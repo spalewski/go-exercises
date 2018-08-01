@@ -4,7 +4,7 @@
   Nauka komunikacji z API przy pomocy formatu [JSON](https://www.json.org/)
 
 #### Treść zadania:
-  Stworzyć program, który przyjmuje adres IP jako argument(flagę) o nazwie. 
+  Stworzyć program, który przyjmuje adres IP jako argument(flagę) o nazwie `ip`. 
   Następnie program wykonuje zapytanie do [API ipinfo](https://ipinfo.io/developers), którego odpowiedź ma zdekodować do wcześniej zadeklarowanego typu(struktury).
   Po zdekodowaniu odpowiedzi, program ma wyświetlić pola struktury w następującej formie:
   ```
@@ -16,6 +16,11 @@
     Loc: xxxx
     Postal: xxxxx
   ```
+
+#### Dodatkowe zadania:
+  - walidacja czy podany adres IP jest poprawny
+  - podział struktury programu na [pakiety](https://www.golang-book.com/books/intro/11)  
+  - stworzenie drugiej flagi, `geo`, która jest typem `bool` i która sprawia, że zwracane są tylko dane geograficzne podanego adresu IP(do tego można użyć endpointu `/geo`, który można znaleźć w [dokumentacji ipinfo](https://ipinfo.io/developers))
 
 ##### Przykładowe użycie programu ma wyglądać następująco:
   ```
