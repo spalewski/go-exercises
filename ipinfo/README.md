@@ -1,11 +1,11 @@
-## Pobieranie i obróbka danych z API [ipinfo](https://ipinfo.io/)
+## Pobieranie i obróbka danych z API [ip-api](http://ip-api.com)
  
 #### Cel zadania: 
   Nauka komunikacji z API przy pomocy formatu [JSON](https://www.json.org/)
 
 #### Treść zadania:
   Stworzyć program, który przyjmuje adres IP jako argument(flagę) o nazwie `ip`. 
-  Następnie program wykonuje zapytanie do [API ipinfo](https://ipinfo.io/developers), którego odpowiedź ma zdekodować do wcześniej zadeklarowanego typu(struktury).
+  Następnie program wykonuje zapytanie do [API ip-api](http://ip-api.com/docs/api:json) którego odpowiedź ma zdekodować do wcześniej zadeklarowanego typu(struktury).
   Po zdekodowaniu odpowiedzi, program ma wyświetlić pola struktury w następującej formie:
   ```
     IP address: xxx.xxx.xxx.xxx
@@ -20,7 +20,7 @@
 #### Dodatkowe zadania:
   - walidacja czy podany adres IP jest poprawny
   - podział struktury programu na [pakiety](https://www.golang-book.com/books/intro/11)  
-  - stworzenie drugiej flagi, `geo`, która jest typem `bool` i która sprawia, że zwracane są tylko dane geograficzne podanego adresu IP(do tego można użyć endpointu `/geo`, który można znaleźć w [dokumentacji ipinfo](https://ipinfo.io/developers))
+  - stworzenie drugiej flagi, `geo`, która jest typem `bool` i która sprawia, że wyświetlane są tylko dane geograficzne podanego adresu IP
 
 ##### Przykładowe użycie programu ma wyglądać następująco:
   ```
@@ -36,7 +36,7 @@
   ```
 
 #### Przydatne materiały:
-  - [dokumentacja API ipinfo.io](https://ipinfo.io/developers)
+  - [dokumentacja API ip-api](http://ip-api.com/docs/api:json)
   - [dokumentacja pakietu net/http](https://golang.org/pkg/net/http/)
   - [przykładowe zapytania przy użyciu pakietu net/http](https://dlintw.github.io/gobyexample/public/http-client.html)
   - [dokumentacja pakietu encoding/json](https://golang.org/pkg/encoding/json/)
