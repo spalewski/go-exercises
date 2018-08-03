@@ -23,3 +23,4 @@
   - dokumetnacja [io.Writer](https://golang.org/pkg/io/#Writer)
   - dokumentacja [os.File](https://golang.org/pkg/os/#File)
   - dokumentacja [ioutil](https://golang.org/pkg/io/ioutil/)
+  - dokumentacja [strings.Fields](https://golang.org/pkg/strings/#Fields)
