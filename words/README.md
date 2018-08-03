@@ -15,7 +15,7 @@
 ##### Przykładowe użycie programu ma wyglądać następująco:
   ```
   go run main.go
-  [Give, Whose, life, moved ...][shall, together, signs, lights ...]
+  [Give Whose life moved ...][shall together signs lights ...]
   ```
 
 #### Przydatne materiały:
