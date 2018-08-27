@@ -38,7 +38,7 @@ W celu uniemożliwienia wyścigów podczas zapisu/odczytu/usuwania, należy wyko
 Aplikacja ma także posiadać gorutynę, której zadaniem bedzie okresowe zapisywanie bazy na dysku(dowolny format) - okres pomiędzy kolejnymi zapisami ma być regulowany za pomocą flagi(dowolna nazwa).
 Podczas uruchamiania aplikacji ma być możliwość użycia powyższego pliku do wczytania bazy.
 
-Serwer ma działać na porcie podanym przez flagę(dowolna nazwa).
+Serwer ma działać na adresie podanym przez flagę `addr`.
 
 #### Druga część - KLIENT
 Ta część zadania polega na stworzeniu aplikacji(klient), której zadaniem będzie komunikacja z serwerem w celu tworzenia/usuwania/pobierania użytkowników.
@@ -48,7 +48,7 @@ Aplikacja ma działać na zasadzie nieskończonej pętli, która będzie czekać
   - `getuser {id}` - pobiera użytkownika na podstawie podanego id
 
 Aplikacja, po otrzymaniu któregokolwiek z tych poleceń ma wykonać odpowiednią akcję. W razie otrzymania niepoprawnego polecenia, aplikacja ma wypisać informację `Unknown task {nazwa niepoprawnego zadania}` i wrócić do pętli.
-Aplikacja ma posiadać flagę określającą port, na którym działa serwer.
+Aplikacja ma posiadać flagę określającą adres, na którym działa serwer.
 
 #### Dodatkowe zadania:
   - użycie kanałów zamiast mutexów. Można wzorować się na [podanym przykładzie](https://medium.com/stupid-gopher-tricks/more-powerful-synchronization-in-go-using-channels-f4a1c3242ed0) 
