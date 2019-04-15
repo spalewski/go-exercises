@@ -1,13 +1,68 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"fmt"
 	"io"
 	"strings"
 )
 
 func words(r io.Reader) (even []string, odd []string) {
-	return
+
+	words := []string{}
+	even = []string{}
+	odd = []string{}
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(r)
+	s := buf.String()
+
+	scanner := bufio.NewScanner(strings.NewReader(s))
+	scanner.Split(bufio.ScanWords)
+	for scanner.Scan() {
+		words = append(words, scanner.Text())
+	}
+
+	for _, each := range words {
+
+		if isEven(countVovels(each)) == true {
+			even = append(even, each)
+		} else {
+			odd = append(odd, each)
+		}
+	}
+
+	return even, odd
+}
+
+func isVowel(x string) bool {
+	vowels := [5]string{"a", "e", "i", "o", "u"}
+	vowelLookupTable := make(map[string]bool)
+	for _, v := range vowels {
+		vowelLookupTable[v] = true
+	}
+	return vowelLookupTable[x]
+}
+
+func countVovels(input string) int {
+	vowelCount := 0
+	var lowercase string = strings.ToLower(input)
+	for _, x := range lowercase {
+		var s string
+		s = fmt.Sprintf("%c", x)
+		if isVowel(s) {
+			vowelCount += 1
+		}
+	}
+	return vowelCount
+}
+
+func isEven(n int) bool {
+	if n%2 == 0 {
+		return true
+	} else {
+		return false
+	}
 }
 
 func main() {
