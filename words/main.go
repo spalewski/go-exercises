@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"log"
+	"os"
 	"strings"
 )
 
@@ -31,12 +33,13 @@ func words(r io.Reader) (even []string, odd []string) {
 			odd = append(odd, each)
 		}
 	}
-
+	writeEven(even)
+	writeOdd(odd)
 	return even, odd
 }
 
 func isVowel(x string) bool {
-	vowels := [5]string{"a", "e", "i", "o", "u"}
+	vowels := [9]string{"a", "e", "i", "o", "ą", "y", "ę", "ó", "u"}
 	vowelLookupTable := make(map[string]bool)
 	for _, v := range vowels {
 		vowelLookupTable[v] = true
@@ -63,6 +66,39 @@ func isEven(n int) bool {
 	} else {
 		return false
 	}
+}
+
+func writeEven(s []string) {
+	file, err := os.OpenFile("even.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		log.Fatalf("failed creating file: %s", err)
+	}
+
+	datawriter := bufio.NewWriter(file)
+
+	for _, data := range s {
+		_, _ = datawriter.WriteString(data + "\n")
+	}
+
+	datawriter.Flush()
+	file.Close()
+}
+func writeOdd(s []string) {
+	file, err := os.OpenFile("odd.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		log.Fatalf("failed creating file: %s", err)
+	}
+
+	datawriter := bufio.NewWriter(file)
+
+	for _, data := range s {
+		_, _ = datawriter.WriteString(data + "\n")
+	}
+
+	datawriter.Flush()
+	file.Close()
 }
 
 func main() {
