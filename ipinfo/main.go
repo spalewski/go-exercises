@@ -58,7 +58,6 @@ type Response struct {
 	Org        string        `json:"org"`
 	RegionName string        `json:"regionName"`
 	Zip        string        `json:"zip"`
-	IpCheck    []interface{} `json:"ipCheck"`
 }
 
 func IsIPCorrect(givenIp string) bool {
