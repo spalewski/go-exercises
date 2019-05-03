@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func CheckIp(toCheck string) string {
+func CheckIp(toCheck string, geo bool) string {
 	var fields string = "?fields=1273"
 	var ipApi = "http://ip-api.com/json/"
 	resp, err := http.Get(ipApi + toCheck + fields)
@@ -28,7 +28,14 @@ func CheckIp(toCheck string) string {
 	var country string = "Country: " + response.Country
 	var loc string = "Loc: " + FloatToString(response.Lat) + ", " + FloatToString(response.Lon)
 	var postal string = "Postal: " + response.Zip
-	var ipInfo = ipAdress + "\n" + organization + "\n" + city + "\n" + region + "\n" + country + "\n" + loc + "\n" + postal
+	var ipInfo string
+
+	if geo == true {
+		ipInfo = ipAdress + "\n" + city + "\n" + region + "\n" + country + "\n" + loc + "\n" + postal
+	} else {
+
+		ipInfo = ipAdress + "\n" + organization + "\n" + city + "\n" + region + "\n" + country + "\n" + loc + "\n" + postal
+	}
 
 	return ipInfo
 }
@@ -49,9 +56,10 @@ type Response struct {
 }
 
 func main() {
-
+	var geo = flag.Bool("geo", false, "shows only geolocation info")
 	ip := flag.String("ip", "81.190.40.214", "ip address to check")
 	flag.Parse()
 	var ipToCheck string = *ip
-	print(CheckIp(ipToCheck))
+	var geoCheck bool = *geo
+	print(CheckIp(ipToCheck, geoCheck))
 }
