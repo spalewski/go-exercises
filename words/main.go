@@ -2,24 +2,32 @@ package main
 
 import (
 	"bufio"
-	"bytes"
+	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
 )
 
-func words(r io.Reader) (even []string, odd []string) {
+func words(r io.Reader, path string) (even []string, odd []string) {
 
-	words := []string{}
+	var words []string
 	even = []string{}
 	odd = []string{}
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(r)
-	s := buf.String()
 
-	scanner := bufio.NewScanner(strings.NewReader(s))
+	fileReaded, err := ioutil.ReadFile(path)
+	if err != nil {
+		fmt.Print(err)
+	}
+	strFromFile := string(fileReaded)
+
+	//buf := new(bytes.Buffer)
+	//buf.ReadFrom(r)
+	//s := buf.String()
+
+	scanner := bufio.NewScanner(strings.NewReader(strFromFile))
 	scanner.Split(bufio.ScanWords)
 	for scanner.Scan() {
 		words = append(words, scanner.Text())
@@ -102,6 +110,11 @@ func writeOdd(s []string) {
 }
 
 func main() {
+
+	path := flag.String("path", "lorem.txt", "enter file location")
+	flag.Parse()
+	var pathString string = *path
+
 	r := strings.NewReader(`
 	Give. 
 	Whose shall life, together signs grass. 
@@ -125,5 +138,5 @@ func main() {
 	Can't. And lights in unto you evening, stars.
 	`)
 
-	fmt.Println(words(r))
+	fmt.Println(words(r, pathString))
 }
