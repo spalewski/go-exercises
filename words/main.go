@@ -4,10 +4,9 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"go-exercises/words/utilities"
 	"io"
 	"io/ioutil"
-	"log"
-	"os"
 	"strings"
 )
 
@@ -41,8 +40,8 @@ func words(r io.Reader, path string) (even []string, odd []string) {
 			odd = append(odd, each)
 		}
 	}
-	writeEven(even)
-	writeOdd(odd)
+	utilities.WriteEven(even)
+	utilities.WriteOdd(odd)
 	return even, odd
 }
 
@@ -76,42 +75,9 @@ func isEven(n int) bool {
 	}
 }
 
-func writeEven(s []string) {
-	file, err := os.OpenFile("even.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-
-	if err != nil {
-		log.Fatalf("failed creating file: %s", err)
-	}
-
-	dataWriter := bufio.NewWriter(file)
-
-	for _, data := range s {
-		_, _ = dataWriter.WriteString(data + "\n")
-	}
-
-	dataWriter.Flush()
-	file.Close()
-}
-func writeOdd(s []string) {
-	file, err := os.OpenFile("odd.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-
-	if err != nil {
-		log.Fatalf("failed creating file: %s", err)
-	}
-
-	dataWriter := bufio.NewWriter(file)
-
-	for _, data := range s {
-		_, _ = dataWriter.WriteString(data + "\n")
-	}
-
-	dataWriter.Flush()
-	file.Close()
-}
-
 func main() {
 
-	path := flag.String("path", "lorem.txt", "enter file location")
+	path := flag.String("path", "words/lorem.txt", "enter file location")
 	flag.Parse()
 	var pathString string = *path
 
