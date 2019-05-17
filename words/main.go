@@ -1,79 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
 	"go-exercises/words/utilities"
-	"io"
-	"io/ioutil"
 	"strings"
 )
-
-func words(r io.Reader, path string) (even []string, odd []string) {
-
-	var words []string
-	even = []string{}
-	odd = []string{}
-
-	fileReaded, err := ioutil.ReadFile(path)
-	if err != nil {
-		fmt.Print(err)
-	}
-	strFromFile := string(fileReaded)
-
-	//buf := new(bytes.Buffer)
-	//buf.ReadFrom(r)
-	//s := buf.String()
-
-	scanner := bufio.NewScanner(strings.NewReader(strFromFile))
-	scanner.Split(bufio.ScanWords)
-	for scanner.Scan() {
-		words = append(words, scanner.Text())
-	}
-
-	for _, each := range words {
-
-		if isEven(countVovels(each)) == true {
-			even = append(even, each)
-		} else {
-			odd = append(odd, each)
-		}
-	}
-	utilities.WriteEven(even)
-	utilities.WriteOdd(odd)
-	return even, odd
-}
-
-func isVovel(x string) bool {
-	vowels := [9]string{"a", "e", "i", "o", "ą", "y", "ę", "ó", "u"}
-	vowelLookupTable := make(map[string]bool)
-	for _, v := range vowels {
-		vowelLookupTable[v] = true
-	}
-	return vowelLookupTable[x]
-}
-
-func countVovels(input string) int {
-	vovelCount := 0
-	var lowerCase string = strings.ToLower(input)
-	for _, x := range lowerCase {
-		var s string
-		s = fmt.Sprintf("%c", x)
-		if isVovel(s) {
-			vovelCount += 1
-		}
-	}
-	return vovelCount
-}
-
-func isEven(n int) bool {
-	if n%2 == 0 {
-		return true
-	} else {
-		return false
-	}
-}
 
 func main() {
 
@@ -104,5 +36,5 @@ func main() {
 	Can't. And lights in unto you evening, stars.
 	`)
 
-	fmt.Println(words(r, pathString))
+	fmt.Println(utilities.Words(r, pathString))
 }
